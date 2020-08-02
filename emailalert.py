@@ -5,15 +5,12 @@ import sensitive
 
 def sendmail():
     try:
-        logfile = open("stocklog.txt", "a")
+        logfile = open("emaillog.txt", "a")
     except:
-        logfile = open("stocklog.txt", "w")
+        logfile = open("emaillog.txt", "w")
 
     now = datetime.now()
     current_datetime = now.strftime("%d/%m/%Y %H:%M:%S")
-
-    action = "Buy"
-    money = "1000"
 
     try:
         mail = smtplib.SMTP(host="smtp.gmail.com",port=587)
@@ -27,9 +24,8 @@ def sendmail():
         for i in range(len(sensitive.recievers)):
             content = """From: """+sensitive.sender+""" <"""+sensitive.sender+"""@gmail.com>
             To: """+sensitive.recievers[i]+""" <"""+sensitive.recievers[i]+"""@gmail.com>
-            Subject: Tesla Stock Alert
-            Alert: """+action+"""
-            Current Portfolio: $"""+money+"""
+            Subject: Email Alert
+            CHANGE THIS MESSAGE TO WHATEVER YOU LIKE
             Time: """+current_datetime+"""
             """
             mail.sendmail(sensitive.sender, sensitive.recievers[i], content)
@@ -37,10 +33,10 @@ def sendmail():
         mail.quit()
 
         print("Successful Alert at "+current_datetime)
-        logfile.write("Sent "+action+" Alert at "+current_datetime+"\n")
+        logfile.write("Successfully sent email alert at: "+current_datetime+"\n")
 
     except:
         print("Unsuccessful Alert at "+current_datetime)
-        logfile.write("Failed to send "+action+" Alert at "+current_datetime+"\n")
+        logfile.write("Failed to send email alert at: "+current_datetime+"\n")
 
     logfile.close()
