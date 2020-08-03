@@ -12,7 +12,7 @@ Currently running on my Raspberry Pi, not very intensive
   Create a GMail account to send automatic emails from
   </br>
   </br>
-  Enable Less Secure Apps for that GMmail address https://myaccount.google.com/lesssecureapps
+  Enable Less Secure Apps for that GMail address https://myaccount.google.com/lesssecureapps
   </br>
   </br>
   Add GMail password, recipients and sender in sensitive.py
